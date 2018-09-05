@@ -1,0 +1,114 @@
+﻿@model TrashCollector2.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeeklyPickupDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeeklyPickupDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OneTimePickupDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OneTimePickupDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoneyOwed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoneyOwed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartOfDelayedPickup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartOfDelayedPickup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndOfDelayedPickup)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndOfDelayedPickup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOnHold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOnHold)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

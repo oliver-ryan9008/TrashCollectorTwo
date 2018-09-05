@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TrashCollector2.Models.Customer>
+
+@{
+    ViewBag.Title = "EmployeeTodayPickups";
+}
+
+<h2>EmployeeTodayPickups</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WeeklyPickupDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OneTimePickupDate)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OneTimePickupDate)
+            </td>
+            <td>
+                @Html.ActionLink("Complete Pickup", "ConfirmPickup", new { customerId = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<br /><br /><br /><br /><br />
+<td>
+    @Html.ActionLink("Employee Main Page", "Index")
+</td>
