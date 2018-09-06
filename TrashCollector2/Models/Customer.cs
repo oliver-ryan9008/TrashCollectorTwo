@@ -9,7 +9,6 @@ namespace TrashCollector2.Models
     public class Customer
     {
         [Key]
-        public int Id { get; set; }
         public string UserId { get; set; }
         public string EmailAddress { get; set; }
         public string UserName { get; set; }

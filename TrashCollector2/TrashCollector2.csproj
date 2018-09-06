@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201809051804093_IgrationMayEcondSay.Designer.cs">
       <DependentUpon>201809051804093_IgrationMayEcondSay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809051817528_IgrationMayIrdThay.cs" />
+    <Compile Include="Migrations\201809051817528_IgrationMayIrdThay.Designer.cs">
+      <DependentUpon>201809051817528_IgrationMayIrdThay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -248,6 +252,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\bg.png" />
+    <Content Include="Content\images\bg1.png" />
+    <Content Include="Content\images\error-img.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -293,6 +301,12 @@
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Employees\EmployeeTodayPickups.cshtml" />
+    <Content Include="Views\Customers\CustomerHome.cshtml" />
+    <Content Include="Views\Customers\MoneyOwed.cshtml" />
+    <Content Include="Views\Customers\DelayPickupsForTime.cshtml" />
+    <Content Include="Views\Customers\ChooseNewOneTimePickup.cshtml" />
+    <Content Include="Views\Employees\DisplayError.cshtml" />
+    <Content Include="Views\Employees\ConfirmPickup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809051804093_IgrationMayEcondSay.resx">
       <DependentUpon>201809051804093_IgrationMayEcondSay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809051817528_IgrationMayIrdThay.resx">
+      <DependentUpon>201809051817528_IgrationMayIrdThay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

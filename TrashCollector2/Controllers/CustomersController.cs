@@ -21,15 +21,23 @@ namespace TrashCollector2.Controllers
             return View(db.Customers.ToList());
         }
 
-        //public ActionResult CustomerHome()
-        //{
-        //    var userId = User.Identity.GetUserId();
-        //    var customer = (from c in db.Customers where c.UserId == userId select c).FirstOrDefault();
-        //    return View(customer);
-        //}
+        public ActionResult CustomerHome()
+        {
+            var userId = User.Identity.GetUserId();
+            var customer = (from c in db.Customers where c.UserId == userId select c).FirstOrDefault();
+            return View(customer);
+        }
+
+        public ActionResult MoneyOwed()
+        {
+            var userId = User.Identity.GetUserId();
+            var customer = (from c in db.Customers where c.UserId == userId select c).FirstOrDefault();
+
+            return View(customer);
+        }
 
         // GET: Customers/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -54,20 +62,22 @@ namespace TrashCollector2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmailAddress,UserName,Password,FullName,StreetAddress,ZipCode,WeeklyPickupDay,OneTimePickupDate,MoneyOwed,StartOfDelayedPickup,EndOfDelayedPickup,IsOnHold")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,EmailAddress,UserName,Password,FullName,StreetAddress,ZipCode,WeeklyPickupDay")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                customer.MoneyOwed = 0;
+                customer.UserId = User.Identity.GetUserId();
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CustomerHome");
             }
 
             return View(customer);
         }
 
         // GET: Customers/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -86,41 +96,93 @@ namespace TrashCollector2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,EmailAddress,UserName,Password,FullName,StreetAddress,ZipCode,WeeklyPickupDay,OneTimePickupDate,MoneyOwed,StartOfDelayedPickup,EndOfDelayedPickup,IsOnHold")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,StreetAddress,ZipCode,WeeklyPickupDay")] Customer customer)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CustomerHome");
             }
             return View(customer);
         }
 
-        // GET: Customers/Delete/5
-        public ActionResult Delete(int? id)
+        //// GET: Customers/Delete/5
+        //public ActionResult Delete(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Customer customer = db.Customers.Find(id);
+        //    if (customer == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(customer);
+        //}
+
+        //// POST: Customers/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(string id)
+        //{
+        //    Customer customer = db.Customers.Find(id);
+        //    db.Customers.Remove(customer);
+        //    db.SaveChanges();
+        //    return RedirectToAction("CustomerHome");
+        //}
+
+        public ActionResult DelayPickupsForTime()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
+            return View();
         }
 
-        // POST: Customers/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DelayPickupsForTime([Bind(Include = "StartOfDelayedPickup, EndOfDelayedPickup")] Customer customer)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            var userId = User.Identity.GetUserId();
+            var today = DateTime.Now.Date;
+            var currentCustomer = (from c in db.Customers where userId == c.UserId select c).FirstOrDefault();
+            if (currentCustomer != null)
+            {
+                currentCustomer.StartOfDelayedPickup = customer.StartOfDelayedPickup;
+                currentCustomer.EndOfDelayedPickup = customer.EndOfDelayedPickup;
+
+                if (today >= currentCustomer.StartOfDelayedPickup &&
+                    today <= currentCustomer.EndOfDelayedPickup)
+                {
+                    currentCustomer.IsOnHold = true;
+                }
+                else
+                {
+                    currentCustomer.IsOnHold = false;
+                }
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("CustomerHome");
+        }
+
+        public ActionResult ChooseNewOneTimePickup()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChooseNewOneTimePickup([Bind(Include = "OneTimePickupDate")] Customer customer)
+        {
+            var userId = User.Identity.GetUserId();
+            var identityToInt = userId;
+            var getCustomerChoice = (from c in db.Customers where userId == c.UserId select c).First();
+            getCustomerChoice.OneTimePickupDate = customer.OneTimePickupDate;
+
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("CustomerHome");
         }
 
         protected override void Dispose(bool disposing)

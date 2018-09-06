@@ -1,0 +1,26 @@
+﻿@model TrashCollector2.Models.Customer
+
+@{
+    ViewBag.Title = "MoneyOwed";
+}
+
+<h3>@Model.FullName, here is a summary of your accounts due: </h3>
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoneyOwed):
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.MoneyOwed).00
+        </dd>
+    </dl>
+</div>
+<br /><br /><br /><br />
+<hr />
+<p>
+    @Html.ActionLink("My Info", "CustomerHome")
+</p>

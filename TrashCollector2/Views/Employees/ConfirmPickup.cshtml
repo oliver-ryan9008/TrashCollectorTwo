@@ -1,0 +1,30 @@
+﻿@model TrashCollector2.Models.Customer
+
+@{
+    ViewBag.Title = "ConfirmPickup";
+}
+@Html.HiddenFor(model => model.UserId)
+<br /><br />
+<hr />
+
+<div>
+
+    <div class="col-md-6">
+        <h4>
+        <strong>Are you sure you want to confirm this pickup?</strong>
+        </h4>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirm Pickup" class="btn btn-default" />
+        </div>
+    }
+
+</div>
+
+<hr />
+@Html.ActionLink("Back to Today's List", "EmployeeTodayPickups")

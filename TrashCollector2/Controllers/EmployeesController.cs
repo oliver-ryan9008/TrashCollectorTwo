@@ -23,7 +23,7 @@ namespace TrashCollector2.Controllers
         }
 
         // GET: Employees/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -52,16 +52,17 @@ namespace TrashCollector2.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.UserId = User.Identity.GetUserId();
                 db.Employees.Add(employee);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("EmployeeTodayPickups");
             }
 
             return View(employee);
         }
 
         // GET: Employees/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -86,13 +87,13 @@ namespace TrashCollector2.Controllers
             {
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("EmployeeTodayPickups");
             }
             return View(employee);
         }
 
         // GET: Employees/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -109,18 +110,23 @@ namespace TrashCollector2.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Employee employee = db.Employees.Find(id);
             db.Employees.Remove(employee);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("EmployeeTodayPickups");
         }
 
         public void GetTodayDayOfWeek()
         {
             string todayDayOfWeek = DateTime.Now.DayOfWeek.ToString();
             string date = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+        }
+
+        public ActionResult DisplayError()
+        {
+            return View();
         }
 
         // GET: Pickups
@@ -134,20 +140,39 @@ namespace TrashCollector2.Controllers
 
             if (!customersMatchingZip.Any())
             {
-                return View();
+                return RedirectToAction("DisplayError");
             }
             else
             {
-                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && c.IsOnHold == false).ToList();
+                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && c.IsOnHold == false || c.IsOnHold == null).ToList();
                 if (!checkTodayPickups.Any())
                 {
-                    return View();
+                    return RedirectToAction("DisplayError");
                 }
                 else
                 {
                     return View(checkTodayPickups);
                 }
             }
+        }
+        
+        public ActionResult ConfirmPickup(string id)
+        {
+            Customer customer = db.Customers.Find(id);
+            return View(customer);
+        }
+
+        [HttpPost, ActionName("ConfirmPickup")]
+        public ActionResult ConfirmedPickup(string id)
+        {
+            var currentCustomer = (from c in db.Customers where c.UserId == id select c).FirstOrDefault();
+            var moneyOwed = ChargeCustomer(currentCustomer);
+
+            if (currentCustomer != null) currentCustomer.MoneyOwed = moneyOwed;
+
+            db.Entry(currentCustomer).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("EmployeeTodayPickups");
         }
 
         public int? ChargeCustomer(Customer customer)
@@ -159,20 +184,7 @@ namespace TrashCollector2.Controllers
             return money;
         }
 
-        public ActionResult ConfirmPickup(Customer customer, Employee employee)
-        {
-            var currentCustomerPickup = customer.Id;
-            var findCurrentCustomer = (from c in db.Customers where c.Id == currentCustomerPickup select c).First();
-            var moneyOwed = ChargeCustomer(customer);
 
-            findCurrentCustomer.MoneyOwed = moneyOwed;
-            findCurrentCustomer.MoneyOwed = customer.MoneyOwed;
-
-
-            db.SaveChanges();
-            return View("EmployeeTodayPickups");
-
-        }
 
 
         protected override void Dispose(bool disposing)
