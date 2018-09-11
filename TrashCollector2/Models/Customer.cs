@@ -23,5 +23,6 @@ namespace TrashCollector2.Models
         public DateTime? StartOfDelayedPickup { get; set; }
         public DateTime? EndOfDelayedPickup { get; set; }
         public bool? IsOnHold { get; set; }
+        public bool? IsConfirmed { get; set; }
     }
 }

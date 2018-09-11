@@ -123,3 +123,4 @@ C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug
 C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationMayIrstFay.resources
 C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationMayEcondSay.resources
 C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationMayIrdThay.resources
+C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationOurthFay.resources

@@ -144,7 +144,7 @@ namespace TrashCollector2.Controllers
             }
             else
             {
-                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && c.IsOnHold == false || c.IsOnHold == null).ToList();
+                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold == false || c.IsOnHold == null)).ToList();
                 if (!checkTodayPickups.Any())
                 {
                     return RedirectToAction("DisplayError");
