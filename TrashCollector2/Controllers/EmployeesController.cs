@@ -176,6 +176,24 @@ namespace TrashCollector2.Controllers
             return RedirectToAction("EmployeeTodayPickups");
         }
 
+        //public ActionResult FilterPickupsByWeekday()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost, ActionName("FilterPickupsByWeekday")]
+        //public ActionResult FilteredPickupsByWeekday()
+        //{
+
+
+        //    return RedirectToAction();
+        //}
+
+        public ActionResult ViewPickupsChosenByWeekday()
+        {
+            return View();
+        }
+
         public int? ChargeCustomer(Customer customer)
         {
 

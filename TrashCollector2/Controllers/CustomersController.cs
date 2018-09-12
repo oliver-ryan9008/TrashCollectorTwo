@@ -96,11 +96,22 @@ namespace TrashCollector2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,StreetAddress,ZipCode,WeeklyPickupDay")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,StreetAddress,ZipCode,WeeklyPickupDay")] Customer customer, string id)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                Customer updatedCustomer = db.Customers.Find(id);
+                if (updatedCustomer == null)
+                {
+                    return RedirectToAction("DisplayError", "Employees");
+                }
+
+                updatedCustomer.StreetAddress = customer.StreetAddress;
+                updatedCustomer.ZipCode = customer.ZipCode;
+                updatedCustomer.WeeklyPickupDay = customer.WeeklyPickupDay;
+                
+                db.Entry(updatedCustomer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("CustomerHome");
             }
@@ -159,7 +170,7 @@ namespace TrashCollector2.Controllers
                 {
                     currentCustomer.IsOnHold = false;
                 }
-
+                db.Entry(currentCustomer).State = EntityState.Modified;
                 db.SaveChanges();
             }
 
@@ -180,6 +191,7 @@ namespace TrashCollector2.Controllers
             var getCustomerChoice = (from c in db.Customers where userId == c.UserId select c).First();
             getCustomerChoice.OneTimePickupDate = customer.OneTimePickupDate;
 
+            db.Entry(customer).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("CustomerHome");

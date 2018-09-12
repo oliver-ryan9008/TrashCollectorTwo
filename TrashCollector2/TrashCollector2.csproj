@@ -311,6 +311,7 @@
     <Content Include="Views\Customers\ChooseNewOneTimePickup.cshtml" />
     <Content Include="Views\Employees\DisplayError.cshtml" />
     <Content Include="Views\Employees\ConfirmPickup.cshtml" />
+    <Content Include="Views\Employees\FilterPickupsByWeekday.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
