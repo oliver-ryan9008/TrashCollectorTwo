@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TrashCollector2.Models.Customer>
+
+@{
+    ViewBag.Title = "ViewPickupsChosenByWeekday";
+}
+
+<h2>ViewPickupsChosenByWeekday</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StreetAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WeeklyPickupDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OneTimePickupDate)
+        </th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            @Html.HiddenFor(modelItem => item.UserId)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreetAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OneTimePickupDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Home", "EmployeeTodayPickups", "Employees")
+                </td>
+            </tr>
+        }
+    }
+</table>
+<br /><br /><br /><br /><br />

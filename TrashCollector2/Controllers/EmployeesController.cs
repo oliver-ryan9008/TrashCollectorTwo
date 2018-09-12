@@ -181,21 +181,20 @@ namespace TrashCollector2.Controllers
             return RedirectToAction("EmployeeTodayPickups");
         }
 
-        //public ActionResult FilterPickupsByWeekday()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost, ActionName("FilterPickupsByWeekday")]
-        //public ActionResult FilteredPickupsByWeekday()
-        //{
-
-
-        //    return RedirectToAction();
-        //}
-
-        public ActionResult ViewPickupsChosenByWeekday()
+        public ActionResult FilterPickupsByWeekday()
         {
+            return View();
+        }
+
+        [HttpPost, ActionName("FilterPickupsByWeekday")]
+        public ActionResult FilteredPickupsByWeekday(string chosenDay)
+        {
+            return RedirectToAction("ViewPickupsChosenByWeekday", chosenDay);
+        }
+
+        public ActionResult ViewPickupsChosenByWeekday(string chosenDay)
+        {
+
             return View();
         }
 

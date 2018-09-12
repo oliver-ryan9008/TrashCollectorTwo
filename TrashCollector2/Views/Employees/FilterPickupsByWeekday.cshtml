@@ -1,7 +1,36 @@
 ﻿
+
 @{
     ViewBag.Title = "FilterPickupsByWeekday";
 }
 
 <h2>FilterPickupsByWeekday</h2>
 
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Customer</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        @Html.DropDownList("chosenDay", new List<SelectListItem>  
+        {  
+            new SelectListItem{ Text="Monday", Value = "1" },  
+            new SelectListItem{ Text="Tuesday", Value = "2" },  
+            new SelectListItem{ Text="Wednesday", Value = "3" },  
+            new SelectListItem{ Text="Thursday", Value = "4" },  
+            new SelectListItem{ Text="Friday", Value = "5" },  
+            new SelectListItem{ Text="Saturday", Value = "6" },
+            new SelectListItem{ Text="Sunday", Value = "0" }
+        }, "Days of Week") 
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="View Customers" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
