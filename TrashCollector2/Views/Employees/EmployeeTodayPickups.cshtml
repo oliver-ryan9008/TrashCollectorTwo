@@ -28,32 +28,35 @@
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @if (Model != null)
     {
-        @Html.HiddenFor(modelItem => item.UserId)
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StreetAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OneTimePickupDate)
-            </td>
-            <td>
-                @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new { id = item.UserId }, FormMethod.Post)
-            </td>
-        </tr>
+        foreach (var item in Model)
+        {
+            @Html.HiddenFor(modelItem => item.UserId)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreetAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OneTimePickupDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new {id = item.UserId}, FormMethod.Post)
+                </td>
+            </tr>
+        }
     }
 </table>
 <br /><br /><br /><br /><br />

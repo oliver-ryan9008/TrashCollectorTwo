@@ -140,14 +140,14 @@ namespace TrashCollector2.Controllers
 
             if (!customersMatchingZip.Any())
             {
-                return RedirectToAction("DisplayError");
+                return View();
             }
             else
             {
-                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold == false || c.IsOnHold == null)).ToList();
+                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold == false || c.IsOnHold == null) && c.IsConfirmed != true).ToList();
                 if (!checkTodayPickups.Any())
                 {
-                    return RedirectToAction("DisplayError");
+                    return View();
                 }
                 else
                 {
@@ -169,6 +169,7 @@ namespace TrashCollector2.Controllers
             var moneyOwed = ChargeCustomer(currentCustomer);
 
             if (currentCustomer != null) currentCustomer.MoneyOwed = moneyOwed;
+            if (currentCustomer != null) currentCustomer.IsConfirmed = true;
 
             db.Entry(currentCustomer).State = EntityState.Modified;
             db.SaveChanges();
