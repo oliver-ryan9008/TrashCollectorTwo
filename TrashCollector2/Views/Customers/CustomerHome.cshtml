@@ -46,18 +46,22 @@
     <dd>
         @Html.DisplayFor(model => model.OneTimePickupDate)
     </dd>
+    @if (Model.IsOnHold)
+    {
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOnHold):
+        </dt>
 
-    <dt>
-        @Html.DisplayNameFor(model => model.IsOnHold):
-    </dt>
-
-    <dd>
-        @Html.DisplayTextFor(model => model.IsOnHold)
-    </dd>
+        <dd>
+            @Html.DisplayTextFor(model => model.IsOnHold)
+        </dd>
+    }
 </dl>
 <div>
-    | @Html.ActionLink("Edit My Info", "Edit", new { id = Model.UserId }) | 
+    | @Html.ActionLink("Schedule One-Time Pickup", "ChooseNewOneTimePickup", new { id = Model.UserId }) |
     @Html.ActionLink("View Balance Due", "MoneyOwed", new { id = Model.UserId }) |
+    @Html.ActionLink("Pay Balance", "PayForPickups", new { id = Model.UserId }) |
+    @Html.ActionLink("Edit My Info", "Edit", new { id = Model.UserId }) |
 </div>
 
 @section Scripts {

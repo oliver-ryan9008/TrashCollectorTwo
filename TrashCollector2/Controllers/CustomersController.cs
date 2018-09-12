@@ -67,6 +67,7 @@ namespace TrashCollector2.Controllers
             if (ModelState.IsValid)
             {
                 customer.MoneyOwed = 0;
+                customer.IsOnHold = false;
                 customer.UserId = User.Identity.GetUserId();
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -188,13 +189,35 @@ namespace TrashCollector2.Controllers
         {
             var userId = User.Identity.GetUserId();
             var identityToInt = userId;
-            var getCustomerChoice = (from c in db.Customers where userId == c.UserId select c).First();
-            getCustomerChoice.OneTimePickupDate = customer.OneTimePickupDate;
+            var currentCustomer = (from c in db.Customers where userId == c.UserId select c).First();
+            currentCustomer.OneTimePickupDate = customer.OneTimePickupDate;
 
-            db.Entry(customer).State = EntityState.Modified;
+            db.Entry(currentCustomer).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("CustomerHome");
+        }
+
+        public ActionResult PayForPickups()
+        {
+            var userId = User.Identity.GetUserId();
+            Customer currentCustomer = (from c in db.Customers where userId == c.UserId select c).First();
+
+            return View(currentCustomer);
+        }
+
+        
+        public ActionResult PayForPickupsConfirmed(string id)
+        {
+            Customer currentCustomer = (from c in db.Customers where c.UserId == id select c).First();
+
+            currentCustomer.IsConfirmed = false;
+            currentCustomer.MoneyOwed = 0;
+
+            db.Entry(currentCustomer).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return View(currentCustomer);
         }
 
         protected override void Dispose(bool disposing)

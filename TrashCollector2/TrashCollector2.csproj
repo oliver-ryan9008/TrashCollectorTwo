@@ -202,25 +202,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809051620496_InitialCreate.cs" />
-    <Compile Include="Migrations\201809051620496_InitialCreate.Designer.cs">
-      <DependentUpon>201809051620496_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809051629533_IgrationMayIrstFay.cs" />
-    <Compile Include="Migrations\201809051629533_IgrationMayIrstFay.Designer.cs">
-      <DependentUpon>201809051629533_IgrationMayIrstFay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809051804093_IgrationMayEcondSay.cs" />
-    <Compile Include="Migrations\201809051804093_IgrationMayEcondSay.Designer.cs">
-      <DependentUpon>201809051804093_IgrationMayEcondSay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809051817528_IgrationMayIrdThay.cs" />
-    <Compile Include="Migrations\201809051817528_IgrationMayIrdThay.Designer.cs">
-      <DependentUpon>201809051817528_IgrationMayIrdThay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809112333058_IgrationOurthFay.cs" />
-    <Compile Include="Migrations\201809112333058_IgrationOurthFay.Designer.cs">
-      <DependentUpon>201809112333058_IgrationOurthFay.cs</DependentUpon>
+    <Compile Include="Migrations\201809121907077_Initial.cs" />
+    <Compile Include="Migrations\201809121907077_Initial.Designer.cs">
+      <DependentUpon>201809121907077_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -312,6 +296,8 @@
     <Content Include="Views\Employees\DisplayError.cshtml" />
     <Content Include="Views\Employees\ConfirmPickup.cshtml" />
     <Content Include="Views\Employees\FilterPickupsByWeekday.cshtml" />
+    <Content Include="Views\Customers\PayForPickups.cshtml" />
+    <Content Include="Views\Customers\PayForPickupsConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -330,20 +316,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809051620496_InitialCreate.resx">
-      <DependentUpon>201809051620496_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809051629533_IgrationMayIrstFay.resx">
-      <DependentUpon>201809051629533_IgrationMayIrstFay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809051804093_IgrationMayEcondSay.resx">
-      <DependentUpon>201809051804093_IgrationMayEcondSay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809051817528_IgrationMayIrdThay.resx">
-      <DependentUpon>201809051817528_IgrationMayIrdThay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809112333058_IgrationOurthFay.resx">
-      <DependentUpon>201809112333058_IgrationOurthFay.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809121907077_Initial.resx">
+      <DependentUpon>201809121907077_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

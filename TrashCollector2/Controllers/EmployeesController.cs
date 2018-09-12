@@ -48,11 +48,16 @@ namespace TrashCollector2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,EmailAddress,UserName,Password,FullName,ZipCode,UserId")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,UserName,Password,FullName,ZipCode,UserId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                employee.UserId = User.Identity.GetUserId();
+                var userId = User.Identity.GetUserId();
+                var currentUser = (from u in db.Users where u.Id == userId select u).First();
+                employee.UserId = userId;
+                employee.EmailAddress = currentUser.Email;
+                employee.Password = currentUser.PasswordHash;
+                
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("EmployeeTodayPickups");

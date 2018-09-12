@@ -118,9 +118,5 @@ C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug
 C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.csproj.CopyComplete
 C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.dll
 C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.pdb
-C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.InitialCreate.resources
+C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.Initial.resources
 C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.csproj.GenerateResource.cache
-C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationMayIrstFay.resources
-C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationMayEcondSay.resources
-C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationMayIrdThay.resources
-C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\obj\Debug\TrashCollector2.Migrations.IgrationOurthFay.resources

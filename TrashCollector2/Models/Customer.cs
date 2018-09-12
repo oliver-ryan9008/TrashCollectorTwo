@@ -22,7 +22,7 @@ namespace TrashCollector2.Models
         public int? MoneyOwed { get; set; }
         public DateTime? StartOfDelayedPickup { get; set; }
         public DateTime? EndOfDelayedPickup { get; set; }
-        public bool? IsOnHold { get; set; }
+        public bool IsOnHold { get; set; }
         public bool? IsConfirmed { get; set; }
     }
 }

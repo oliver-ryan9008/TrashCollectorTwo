@@ -1,0 +1,34 @@
+﻿@model TrashCollector2.Models.Customer
+
+@{
+    ViewBag.Title = "PayForPickups";
+}
+
+<h2>PayForPickups</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.UserId)
+<div>
+    <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.UserId)
+        <dt>
+            @Html.DisplayNameFor(model => model.MoneyOwed):
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.MoneyOwed).00
+        </dd>
+    </dl>
+
+    | @Html.ActionLink("Pay", "PayForPickupsConfirmed", new { id = Model.UserId }) |
+    @Html.ActionLink("Cancel", "CustomerHome", new { id = Model.UserId }) |
+
+    @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Pay" class="btn btn-default" />
+            </div>
+        </div>*@
+</div>
+}
