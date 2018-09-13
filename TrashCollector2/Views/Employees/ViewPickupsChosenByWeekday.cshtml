@@ -52,11 +52,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OneTimePickupDate)
                 </td>
-                <td>
-                    @Html.ActionLink("Home", "EmployeeTodayPickups", "Employees")
-                </td>
             </tr>
         }
     }
 </table>
+<hr />
+@Html.ActionLink("Home", "EmployeeTodayPickups", "Employees")
 <br /><br /><br /><br /><br />

@@ -123,11 +123,6 @@ namespace TrashCollector2.Controllers
             return RedirectToAction("EmployeeTodayPickups");
         }
 
-        public void GetTodayDayOfWeek()
-        {
-            string todayDayOfWeek = DateTime.Now.DayOfWeek.ToString();
-            string date = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-        }
 
         public ActionResult DisplayError()
         {
@@ -175,6 +170,10 @@ namespace TrashCollector2.Controllers
 
             if (currentCustomer != null) currentCustomer.MoneyOwed = moneyOwed;
             if (currentCustomer != null) currentCustomer.IsConfirmed = true;
+            if (currentCustomer != null && currentCustomer.OneTimePickupDate == DateTime.Now.Date)
+            {
+                currentCustomer.OneTimePickupDate = null;
+            }
 
             db.Entry(currentCustomer).State = EntityState.Modified;
             db.SaveChanges();
@@ -189,13 +188,32 @@ namespace TrashCollector2.Controllers
         [HttpPost, ActionName("FilterPickupsByWeekday")]
         public ActionResult FilteredPickupsByWeekday(string chosenDay)
         {
-            return RedirectToAction("ViewPickupsChosenByWeekday", chosenDay);
+            return RedirectToAction("ViewPickupsChosenByWeekday", new { day = chosenDay });
         }
 
-        public ActionResult ViewPickupsChosenByWeekday(string chosenDay)
+        public ActionResult ViewPickupsChosenByWeekday(string day)
         {
+            var userId = User.Identity.GetUserId();
+            var currentEmployee = (from e in db.Employees where e.UserId == userId select e).FirstOrDefault();
+            var customersMatchingZip = (from c in db.Customers where c.ZipCode == currentEmployee.ZipCode select c).ToList();
+            List<Customer> specificDayCustomers = new List<Customer>();
 
-            return View();
+            if (customersMatchingZip.Any())
+            {
+
+                foreach (var cust in customersMatchingZip)
+                {
+                    var pickupDateString = cust.OneTimePickupDate.ToString();
+                    var specificDatePickup = DateTime.Parse(pickupDateString).DayOfWeek.ToString();
+
+                    if ((cust.WeeklyPickupDay == day || specificDatePickup == day) && !cust.IsOnHold && cust.IsConfirmed != true)
+                    {
+                        specificDayCustomers.Add(cust);
+                    }
+                }
+            }
+
+            return View(specificDayCustomers);
         }
 
         public int? ChargeCustomer(Customer customer)
