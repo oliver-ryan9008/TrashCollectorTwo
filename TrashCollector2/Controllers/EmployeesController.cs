@@ -216,15 +216,42 @@ namespace TrashCollector2.Controllers
             return View(specificDayCustomers);
         }
 
-        public ActionResult SeeCustomersOnMap(string customer)
+        public ActionResult SeeCustomersOnMap(string id)
         {
+            if (id != null)
+            {
+                var customer = (from c in db.Customers where c.UserId == id select c).ToList();
+                return View(customer);
+            }
+            var userId = User.Identity.GetUserId();
+            var currentEmployee = (from e in db.Employees where e.UserId == userId select e).FirstOrDefault();
+            var todayDayOfWeek = DateTime.Now.DayOfWeek.ToString();
+            var todayDate = DateTime.Now.Date;
+            var customersMatchingZip = (from c in db.Customers where c.ZipCode == currentEmployee.ZipCode select c).ToList();
 
-            return View(db.Customers.ToList());
+            if (!customersMatchingZip.Any())
+            {
+                return View();
+            }
+            else
+            {
+                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold != true) && c.IsConfirmed != true).ToList();
+                if (!checkTodayPickups.Any())
+                {
+                    return View();
+                }
+                else
+                {
+                    return View(checkTodayPickups);
+                }
+            }
+
+            
         }
 
         public ActionResult ViewCustomersOnMap(string customer)
         {
-
+            // DO NOT USE!!!!!!!!
             return View(db.Customers.ToList());
         }
 

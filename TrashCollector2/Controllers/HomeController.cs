@@ -30,15 +30,7 @@ namespace TrashCollector2.Controllers
         }
 
         public ActionResult SorryToSeeYouGo()
-        {
-            AccountController account = new AccountController();
-            var userId = customer.UserId;
-            var currentUser = (from u in db.Users where u.Id == userId select u).First();
-            db.Customers.Remove(customer);
-
-            db.Users.Remove(currentUser);
-            db.SaveChanges();
-            account.LogOff();
+        {            
             return View();
         }
 

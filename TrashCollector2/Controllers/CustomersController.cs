@@ -140,8 +140,11 @@ namespace TrashCollector2.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Customer customer = db.Customers.Find(id);
+            customer.FullName = "Deleted";
+            db.Entry(customer).State = EntityState.Modified;
+            db.SaveChanges();            
 
-            return RedirectToAction("SorryToSeeYouGo", "Home");
+            return RedirectToAction("LogOff", "Account");
         }
 
 

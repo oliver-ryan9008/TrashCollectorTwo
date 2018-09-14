@@ -6,6 +6,8 @@
 
 <h2>EmployeeTodayPickups</h2>
 
+@{List<string> pins = new List<string>(); }
+
 <table class="table">
     <tr>
         <th>
@@ -32,6 +34,7 @@
     {
         foreach (var item in Model)
         {
+            pins.Add(item.UserId);
             @Html.HiddenFor(modelItem => item.UserId)
             <tr>
                 <td>
@@ -53,11 +56,13 @@
                     @Html.DisplayFor(modelItem => item.OneTimePickupDate)
                 </td>
                 <td>
-                    @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new { id = item.UserId }, FormMethod.Post) | @Html.ActionLink("View On Map", "SeeCustomersOnMap", new { customer = item.UserId })
+                    @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new { id = item.UserId }, FormMethod.Post) | @Html.ActionLink("Map This", "SeeCustomersOnMap", new { id = item.UserId })
                 </td>
             </tr>
         }
     }
 </table>
-
+<div>
+    @Html.ActionLink("View All Pickups On Map", "SeeCustomersOnMap")
+</div>
 <br /><br /><br /><br /><br />

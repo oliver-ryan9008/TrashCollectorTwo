@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TrashCollector2.Models.Customer>
-@{ Layout = null; }
+
 @{
     ViewBag.Title = "SeeCustomersOnMap";
 }
@@ -21,8 +21,8 @@
             var bounds = new google.maps.LatLngBounds;
             var markersArray = [];
             var origin1 = "333 N Plankinton Ave, Milwaukee, WI";
-            var destIcon = document.createElement("icon");
-            destIcon.src = "C:\Users\rdo17\Desktop\DevCode\ASP.Net\TrashCollector2\TrashCollector2\Content\Icon\Webp.net-resizeimage.png";
+            var homeIcon = "http://maps.google.com/mapfiles/ms/icons/homegardenbusiness.png";
+            var destIcon = "http://maps.google.com/mapfiles/ms/icons/flag.png";
 
             var destinationArray = [];
 
@@ -34,8 +34,7 @@
             //var destinationIcon = 'https://chart.googleapis.com/chart?' +
             //    'chst=d_map_pin_letter&chld=D|FF0000|000000';
             var destinationIcon = destIcon;
-            var originIcon = 'https://chart.googleapis.com/chart?' +
-                'chst=d_map_pin_letter&chld=O|FFFF00|000000';
+            var originIcon = homeIcon;
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 55.53, lng: 9.4 },
                 zoom: 10
@@ -56,8 +55,6 @@
                 } else {
                     var originList = response.originAddresses;
                     var destinationList = response.destinationAddresses;
-                    var outputDiv = document.getElementById('output');
-                    outputDiv.innerHTML = '';
                     deleteMarkers(markersArray);
 
                     var showGeocodedAddressOnMap = function (asDestination) {
@@ -83,9 +80,6 @@
                         for (var j = 0; j < results.length; j++) {
                             geocoder.geocode({ 'address': destinationList[j] },
                                 showGeocodedAddressOnMap(true));
-                            outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
-                                ': ' + results[j].distance.text + ' in ' +
-                                results[j].duration.text + '<br>';
                         }
                     }
                 }
@@ -99,229 +93,13 @@
             markersArray = [];
         }
     </script>
-    @*var markersArray = [];
-        var addressList = [];
-        @foreach (var a in addresses)
-        {
-            <text> addressList.push("@a"); </text>
-        }
-        console.log(addressList);
-
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map_canvas'),
-                {
-                    zoom: 12,
-                    center: { lat: 43.0341, lng: -87.9120 }
-                });
-            var geocoder = new google.maps.Geocoder;
-            debugger;
-            var origin1 = "333 N Plankinton Ave, Milwaukee, WI";
-            var service = new google.maps.DistanceMatrixService;
-            service.getDistanceMatrix({
-                origins: [origin1],
-                destinations: addressList,
-                travelMode: 'DRIVING',
-                drivingOptions: {
-                    departureTime: new Date(Date.now()),
-                    trafficModel: 'bestguess'
-                },
-                unitSystem: google.maps.UnitSystem.IMPERIAL,
-                avoidHighways: false,
-                avoidTolls: false
-            },
-                function (response, status) {
-                    if (status !== 'OK') {
-                        alert('Error was: ' + status);
-                    }
-                    else {
-                        debugger;
-
-                        for (var i = 0; i < addressList.length; i++) {
-                            var results = response.rows[i].elements[0];
-                        }
-                        geocoder.geocode({ 'address': addressList[i] },
-                            showGeocodedAddressOnMap(true));
-                        var showGeocodedAddressOnMap = function (asDestination) {
-                            var icon = asDestination ? destinationIcon : originIcon;
-                            return function (results, status) {
-                                if (status === 'OK') {
-                                    map.fitBounds(bounds.extend(results[0].geometry.location));
-                                    markersArray.push(new google.maps.Marker({
-                                        map: map,
-                                        position: results[0].geometry.location,
-                                        icon: icon
-                                    }));
-                                }
-                                else {
-                                    alert('Geocode was not successful due to: ' + status);
-                                }
-                            };
-                        };
-                    }
-                });
-
-        }*@
 
 
-    @*function initMap() {
-            var map = new google.maps.Map(document.getElementById('map_canvas'),
-                {
-                    zoom: 12,
-                    center: { lat: 43.0341, lng: -87.9120 }
-                });
-            var geocoder = new google.maps.Geocoder();
-
-            //document.getElementById('submit').addEventListener('click', function () {
-
-            codeAddress(geocoder, map);
-            //});
-        }
-        var locations = [];
-        @foreach (var custAddress in addresses)
-            {
-                <text> var addy = "@custAddress";
-                    locations.push(addy); </text>
-            }
-
-
-            //codeAddress(locations[i]);
-
-
-        function codeAddress(geocoder, map) {
-            for (var i = 0; i < locations.length; i++) {
-
-                geocoder.geocode({
-                    'address': location[i]
-                }, function (results, status) {
-                    debugger;
-                    console.log(location[i]);
-                    console.log(status);
-                    console.log(location);
-                    debugger;
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        map.setCenter(results[0].geometry.location);
-                        var marker = new google.maps.Marker({
-                            map: map,
-                            title: location[1],
-                            url: locations[2],
-                            position: results[0].geometry.location
-                        });
-                        bounds.extend(marker.getPosition());
-                        map.fitBounds(bounds);
-                        google.maps.event.addListener(marker, 'dblclick', function () {
-                            window.location.href = this.url;
-                        });
-                        google.maps.event.addListener(marker, 'click', (function (marker, location) {
-                            return function () {
-                                infowindow.setContent(location[0]);
-                                infowindow.open(map, marker);
-                            };
-                        })(marker, location));
-                    } else {
-                        console.log("Geocode was not successful for the following reason: " + status);
-                    }
-                });
-            }
-        }*@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGvhu29zeuR47fvfZF6LFwtErw3wkqx8M&callback=initMap">
 
     </script>
-    <div id="right-panel">
-        <div id="inputs">
-            <pre>
 
-            </pre>
-        </div>
-        <div>
-            <strong>Results</strong>
-        </div>
-        <div id="output"></div>
-    </div>
     <div id="map" style="width : 700px; height : 400px; margin : 0px; padding : 0px; float : left; margin-right:20px;">
 
     </div>
-
-    @*<script type="text/javascript">
-            // our code will go in here...
-
-            This code tells the browser to execute the "Initialize" method
-        only when the complete document model has been loaded.
-            $(document).ready(function() {
-                Initialize();
-            });
-
-            function Initialize() {
-                google.maps.visualRefresh = true;
-                var Liverpool = new google.maps.LatLng(53.408841, -2.981397);
-                var mapOptions = {
-                    zoom: 14,
-                    center: Liverpool,
-                    mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
-                };
-                var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-                var myLatlng = new google.maps.LatLng(53.40091, -2.994464);
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: 'Tate Gallery'
-                });
-                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-                var data = [
-                    {
-                        "Id": 1,
-                        "PlaceName": "Liverpool Museum",
-                        "OpeningHours": "9-5, M-F",
-                        "GeoLong": "53.410146",
-                        "GeoLat": "-2.979919"
-                    },
-                    {
-                        "Id": 2,
-                        "PlaceName": "Merseyside Maritime Museum ",
-                        "OpeningHours": "9-1,2-5, M-F",
-                        "GeoLong":
-                            "53.401217",
-                        "GeoLat": "-2.993052"
-                    },
-                    {
-                        "Id": 3,
-                        "PlaceName": "Walker Art Gallery",
-                        "OpeningHours": "9-7, M-F",
-                        "GeoLong":
-                            "53.409839",
-                        "GeoLat": "-2.979447"
-                    },
-                    {
-                        "Id": 4,
-                        "PlaceName": "National Conservation Centre",
-                        "OpeningHours": "10-6, M-F",
-                        "GeoLong":
-                            "53.407511",
-                        "GeoLat": "-2.984683"
-                    }
-                ];
-                $.each(data,
-                    function(i, item) {
-                        var marker = new google.maps.Marker({
-                            'position': new google.maps.LatLng(item.GeoLong, item.GeoLat),
-                            'map': map,
-                            'title': item.PlaceName
-                        });
-                        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-                        var infowindow = new google.maps.InfoWindow({
-                            content: "<div class='infoDiv'><h2>" +
-                                item.PlaceName +
-                                "</h2>" +
-                                "<div><h4>Opening hours: " +
-                                item.OpeningHours +
-                                "</h4></div></div>"
-                        });
-                        google.maps.event.addListener(marker,
-                            'click',
-                            function() {
-                                infowindow.open(map, marker);
-                            });
-                    });
-            }
-
-
-        </script>*@
+    </section>

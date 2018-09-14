@@ -386,11 +386,24 @@ namespace TrashCollector2.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            var checkForCustomer = (from c in db.Customers where c.FullName == "Deleted" select c).ToList().Any();
+            if (checkForCustomer)
+            {
+                var customer = (from c in db.Customers where c.FullName == "Deleted" select c).First();
+                var userId = customer.UserId;
+                var currentUser = (from u in db.Users where u.Id == userId select u).First();
+                db.Users.Remove(currentUser);                
+                db.Customers.Remove(customer);
+                db.SaveChanges();
+
+                return RedirectToAction("SorryToSeeYouGo", "Home");
+            }
             return RedirectToAction("Index", "Home");
         }
 
