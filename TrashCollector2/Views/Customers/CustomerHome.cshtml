@@ -46,7 +46,7 @@
     <dd>
         @Html.DisplayFor(model => model.OneTimePickupDate)
     </dd>
-    @if (Model.IsOnHold)
+    @if (Model != null && Model.IsOnHold)
     {
         <dt>
             @Html.DisplayNameFor(model => model.IsOnHold):
@@ -62,6 +62,7 @@
     @Html.ActionLink("View Balance Due", "MoneyOwed", new { id = Model.UserId }) |
     @Html.ActionLink("Pay Balance", "PayForPickups", new { id = Model.UserId }) |
     @Html.ActionLink("Edit My Info", "Edit", new { id = Model.UserId }) |
+    @Html.ActionLink("Delete My Account", "Delete", new { id = Model.UserId }) |
 </div>
 
 @section Scripts {

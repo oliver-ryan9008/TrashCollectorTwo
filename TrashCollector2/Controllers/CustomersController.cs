@@ -119,31 +119,32 @@ namespace TrashCollector2.Controllers
             return View(customer);
         }
 
-        //// GET: Customers/Delete/5
-        //public ActionResult Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Customer customer = db.Customers.Find(id);
-        //    if (customer == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(customer);
-        //}
+        // GET: Customers/Delete/5
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
 
-        //// POST: Customers/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(string id)
-        //{
-        //    Customer customer = db.Customers.Find(id);
-        //    db.Customers.Remove(customer);
-        //    db.SaveChanges();
-        //    return RedirectToAction("CustomerHome");
-        //}
+        // POST: Customers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Customer customer = db.Customers.Find(id);
+
+            return RedirectToAction("SorryToSeeYouGo", "Home");
+        }
+
+
 
         public ActionResult DelayPickupsForTime()
         {

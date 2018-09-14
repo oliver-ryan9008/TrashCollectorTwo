@@ -216,6 +216,18 @@ namespace TrashCollector2.Controllers
             return View(specificDayCustomers);
         }
 
+        public ActionResult SeeCustomersOnMap(string customer)
+        {
+
+            return View(db.Customers.ToList());
+        }
+
+        public ActionResult ViewCustomersOnMap(string customer)
+        {
+
+            return View(db.Customers.ToList());
+        }
+
         public int? ChargeCustomer(Customer customer)
         {
 

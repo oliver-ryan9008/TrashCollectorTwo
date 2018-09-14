@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using TrashCollector2.Models;
 
 namespace TrashCollector2.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
             if (User.IsInRole("Employee"))
@@ -21,6 +27,19 @@ namespace TrashCollector2.Controllers
 
             return View();
             
+        }
+
+        public ActionResult SorryToSeeYouGo()
+        {
+            AccountController account = new AccountController();
+            var userId = customer.UserId;
+            var currentUser = (from u in db.Users where u.Id == userId select u).First();
+            db.Customers.Remove(customer);
+
+            db.Users.Remove(currentUser);
+            db.SaveChanges();
+            account.LogOff();
+            return View();
         }
 
         public ActionResult About()

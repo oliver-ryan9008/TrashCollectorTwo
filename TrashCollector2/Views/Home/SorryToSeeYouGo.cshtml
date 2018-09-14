@@ -1,0 +1,787 @@
+﻿@{ Layout = null; }
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <title></title>
+
+
+
+    
+
+    <style type="text/css">
+    @("@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);")
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	function timers() {
+		setTimeout(function(){
+			$('.countdown').each(function() {
+			    if (! $(this).data('countdown-bound')) {
+                    var id = $(this).attr('id');
+                    var date = $(this).attr('data-date');
+
+                    $(this).data('countdown-bound', true);
+                    initializeClock(id, date);
+                }
+			});
+		});
+	}
+
+	$(document).ready(function () {
+		timers();
+
+        $('body').on('DOMNodeInserted',function(e) {
+            timers();
+        });
+	});
+
+	function getTimeRemaining(endtime) {
+        endtime = endtime.replace(' ', 'T');
+
+        var t = Date.parse(endtime) - Date.parse(new Date());
+		var seconds = Math.floor((t / 1000) % 60);
+		var minutes = Math.floor((t / 1000 / 60) % 60);
+		var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+		var days = Math.floor(t / (1000 * 60 * 60 * 24));
+		return {
+			'total': t,
+			'days': days,
+			'hours': hours,
+			'minutes': minutes,
+			'seconds': seconds
+		};
+	}
+
+	function initializeClock (id, endtime) {
+		var clock = document.getElementById(id);
+		var daysSpan = clock.querySelector('.days');
+		var hoursSpan = clock.querySelector('.hours');
+		var minutesSpan = clock.querySelector('.minutes');
+		var secondsSpan = clock.querySelector('.seconds');
+
+		function updateClock() {
+			var t = getTimeRemaining(endtime);
+
+			daysSpan.innerHTML = t.days;
+			hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+			minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+			secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+			if (t.total <= 0) {
+				daysSpan.innerHTML = '00';
+				hoursSpan.innerHTML = '00';
+				minutesSpan.innerHTML = '00';
+				secondsSpan.innerHTML = '00';
+			}
+		}
+
+		updateClock();
+
+		if (window['timerinterval' + id]) {
+			clearInterval(window['timerinterval' + id]);
+		}
+
+		window['timerinterval' + id] = setInterval(updateClock, 1000);
+	}
+    </script>
+
+
+    <style type="text/css">
+        .wrapper {
+            display: table;
+            height: 100%;
+            width: 100%;
+            padding: 42px 0;
+        }
+
+        .ml-content-table {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <style type="text/css">
+        .ml-3 {
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+            .ml-3 h1 {
+                color: #ffffff;
+                font-size: 36px;
+                font-weight: normal;
+                font-style: normal;
+                text-decoration: none;
+                text-align: center;
+            }
+    </style>
+    <style type="text/css">
+        @("@media (max-width: 768px) {.ml-3 h1 {}}")
+    </style>
+    <style type="text/css">
+        .ml-5 {
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+            .ml-5 p {
+                color: #ffffff;
+                font-size: 18px;
+                line-height: 30px;
+                margin: 0 0 15px 0;
+            }
+
+                .ml-5 p:last-child {
+                    margin-bottom: 0;
+                }
+
+                .ml-5 p a {
+                    color: #ffffff;
+                    text-decoration: underline;
+                }
+    </style>
+    <style type="text/css">
+								@("@media (max-width: 768px) {.ml-5 p {font-size: 18px!important;}}")
+    </style>
+    <style type="text/css">
+        .ml-7 {
+            background-position: center center;
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+            .ml-7 .btn {
+                background-color: #ffbd21;
+                font-size: 18px;
+                color: #ffffff;
+                border-radius: 5px;
+                font-weight: normal;
+                font-style: normal;
+                text-decoration: none;
+                height: auto;
+                line-height: 100%;
+                padding: 14px 12px;
+                white-space: normal;
+            }
+
+                .ml-7 .btn:hover {
+                    background-color: #ffcb2c;
+                    color: #ffffff;
+                }
+    </style>
+    <style type="text/css">
+        .ml-10 {
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+            .ml-10 h1 {
+                color: #ffffff;
+                font-size: 36px;
+                font-weight: normal;
+                font-style: normal;
+                text-decoration: none;
+                text-align: center;
+            }
+    </style>
+    <style type="text/css">
+								@("@media (max-width: 768px) {.ml-10 h1 {font-size: 28px!important;}}")
+                                
+    </style>
+    <style type="text/css">
+        .ml-12 {
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+            .ml-12 p {
+                color: #ffffff;
+                font-size: 18px;
+                line-height: 30px;
+                margin: 0 0 15px 0;
+            }
+
+                .ml-12 p:last-child {
+                    margin-bottom: 0;
+                }
+
+                .ml-12 p a {
+                    color: #ffffff;
+                    text-decoration: underline;
+                }
+    </style>
+    <style type="text/css">
+								@("@media (max-width: 768px) {.ml-12 p {font-size: 18px!important;}}")
+    </style>
+    <style type="text/css">
+		body {
+			background: url('https://bucket.mlcdn.com/a/306/306311/images/3ba0659bf231cf85ef45de3bdd36195319db0ce5.jpeg') #4a423f;
+			background-position: center center;
+		    background-size: cover;
+		    box-sizing: border-box;
+		    font-family: 'Montserrat', sans-serif;
+		    line-height: 200%;
+		}
+		.checkbox.ml-validate-required.ml-error p, .checkbox.ml-validate-required.ml-error p a {
+				color: red!important;
+			}
+		p {
+			margin: 0 0 15px 0;
+		}
+		h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	padding: 0;
+}
+p {
+	margin: 0 0 15px 0;
+}
+.align-center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.mt0 { margin-top: 0 !important; }
+.mt10 { margin-top: 10px !important; }
+.mt15 { margin-top: 15px !important; }
+.mt20 { margin-top: 20px !important; }
+.mt30 { margin-top: 30px !important; }
+.mt40 { margin-top: 40px !important; }
+.mt50 { margin-top: 50px !important; }
+.mt60 { margin-top: 60px !important; }
+.mt70 { margin-top: 70px !important; }
+.mt80 { margin-top: 80px !important; }
+.mt90 { margin-top: 90px !important; }
+.mt100 { margin-top: 100px !important; }
+.mb0 { margin-bottom: 0 !important; }
+.mb10 { margin-bottom: 10px !important; }
+.mb15 { margin-bottom: 15px !important; }
+.mb20 { margin-bottom: 20px !important; }
+.mb30 { margin-bottom: 30px !important; }
+.mb40 { margin-bottom: 40px !important; }
+.mb50 { margin-bottom: 50px !important; }
+.mb60 { margin-bottom: 60px !important; }
+.mb70 { margin-bottom: 70px !important; }
+.mb80 { margin-bottom: 80px !important; }
+.mb90 { margin-bottom: 90px !important; }
+.mb100 { margin-bottom: 100px !important; }
+.pt0 { padding-top: 0 !important; }
+.pt10 { padding-top: 10px !important; }
+.pt15 { padding-top: 15px !important; }
+.pt20 { padding-top: 20px !important; }
+.pt30 { padding-top: 30px !important; }
+.pt40 { padding-top: 40px !important; }
+.pt50 { padding-top: 50px !important; }
+.pt60 { padding-top: 60px !important; }
+.pt70 { padding-top: 70px !important; }
+.pt80 { padding-top: 80px !important; }
+.pt90 { padding-top: 90px !important; }
+.pt100 { padding-top: 100px !important; }
+.pb0 { padding-bottom: 0 !important; }
+.pb10 { padding-bottom: 10px !important; }
+.pb15 { padding-bottom: 15px !important; }
+.pb20 { padding-bottom: 20px !important; }
+.pb30 { padding-bottom: 30px !important; }
+.pb40 { padding-bottom: 40px !important; }
+.pb50 { padding-bottom: 50px !important; }
+.pb60 { padding-bottom: 60px !important; }
+.pb70 { padding-bottom: 70px !important; }
+.pb80 { padding-bottom: 80px !important; }
+.pb90 { padding-bottom: 90px !important; }
+.pb100 { padding-bottom: 100px !important; }
+.pl0 { padding-left: 0px !important; }
+.pr0 { padding-right: 0px !important; }
+
+form {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.form-group,
+.input-group {
+  z-index: 1;
+}
+.form-control {
+	border: none;
+	z-index: 1;
+}
+.form-control:focus {
+	border: none;
+	box-shadow: none;
+	outline: medium none;
+}
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus {
+	box-shadow: none;
+	outline: medium none;
+}
+
+.display-inline {
+    display: inline-block !important;
+}
+
+.display-none {
+    display: none !important;
+}
+		.navbar-brand {
+			padding: 0px;
+		}
+		.navbar-brand>img {
+			height: 100%;
+			padding: 7px 15px;
+			width: auto;
+		}
+		.ml-spacer-hack {
+			display: block;
+			height: 15px;
+		}
+		/* */
+		.display-table {
+			display: table;
+		    table-layout: fixed;
+		    width: 100%;
+		}
+		.col-middle {
+		    vertical-align: middle;
+		}
+		.col-height {
+		    display: table-cell;
+		    float: none;
+		    height: 100%;
+		}
+		.media {
+			margin-top: 0px;
+		}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.ml-error .label-description {
+  color: #ff0000 !important;
+}
+        </style>
+    <style>
+@("@media (max-width: 992px) {.ts-block .media-left {float: left;width: 100%;margin -bottom: 15px;}}")
+
+@(@"(@media (max-width: 768px) {.ts-block .media-left {float: none;width: auto;margin -bottom: 0px;}        
+            
+    .container-fluid{
+        padding: 15px 30px!important;
+    }
+
+	.hero h1 {
+        margin-bottom: 15px!important;
+    }
+
+	.ml-subscribe-form {
+        margin-top: 0!important;
+        padding: 15px 0!important;
+    }
+
+	.container {
+        padding: 0px!important;
+    }
+
+	.default {
+        padding: 0px 30px!important;
+    }
+
+	.copyright {
+        text-align: center!important;
+    }
+
+    ul.list-centered {
+        margin-bottom: -10px!important;
+    }
+
+    ul.list-centered li {
+        margin-bottom: 10px!important;
+    }
+
+	.social-icons-block {
+        text-align: center!important;
+    }
+
+	.social-icons-block ul {
+        float: none!important;
+    }
+
+	.navbar-header .navbar-brand{
+        /* Firefox */
+        width: -moz-calc(100% - 80px);
+        /* WebKit */
+        width: -webkit-calc(100% - 80px);
+        /* Opera */
+        width: -o-calc(100% - 80px);
+        /* Standard */
+        width: calc(100% - 80px);
+    }
+
+	.navbar-header .navbar-brand img{
+        padding: 0px!important;
+    }
+
+	.ml-date {
+        margin-bottom: 15px!important;
+    }
+
+	.ml-date:last-child {
+        margin-bottom: 0px!important;
+    }
+
+	.mb-30 {
+        margin-bottom: 15px!important;
+    }
+
+	.media .media-left .media-object {
+        width: 100px!important;
+    }
+
+	.col-height {
+        display: block !important;
+    }
+	.col-image-text {
+        margin-bottom: 30px;
+    }
+	.col-text-image {
+        margin-top: 30px;
+    }
+	.col-res-30 {
+        margin-bottom: 30px;
+    }
+	.btn, .form-control {
+        white-space: normal !important;
+        line-height: 100% !important;
+        height: auto !important;
+        padding: 10px !important;
+    }
+    h1,h2,h3 {
+        word-break: break-word;
+    }
+	/* Social share */
+	.list-centered.share-icons li a img {
+        margin: 5px;
+    }
+	/* Gallery */
+	.gallery .img-responsive {
+        margin-bottom: 30px;
+    }
+	.gallery .align-center:last-child .img-responsive {
+        margin-bottom: 0px;
+    }
+
+	/* INPUT AND BUTTON  */
+
+	.input-group {
+        width: 100%!important;
+    }
+
+    input.form-control {
+    }
+
+    span.input-group-btn {
+        float: left!important;
+        margin-top: 15px!important;
+        width: 100%!important;
+    }
+
+    button.btn {
+        width: 100%!important;
+    }
+
+}")
+    </style>
+    <script type="text/javascript" src="//static.mailerlite.com/js/w/ml_jQuery.inputmask.bundle.min.js?v3.3.1"></script>
+</head>
+<body>
+
+    <div class="wrapper row-form">
+        <div class="ml-content-table">
+
+            <div class="container-fluid ml-3">
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <h1>Oh No! We truly hate to lose you!</h1>
+                        </div>
+                    </div>
+                                       
+                </div>
+            </div>
+
+            <div class="container-fluid ml-5">
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <p>We are sorry to see you go! We would love to have you back in the future!</p>
+                            <p>If you would like to rejoin, click register.&nbsp;</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container-fluid ml-7">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <a class="btn btn-block" href="~/Account/Register" target="_self">Register</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row-success" style="display: none">
+        <template class="success-template">
+            <div class="wrapper">
+                <div class="ml-content-table">
+
+                    <div class="container-fluid ml-10">
+                        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <h1>Thank you!</h1>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="container-fluid ml-12">
+                        <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <div style="display: none">
+        <script>
+
+
+  var $ = window.ml_jQuery || window.jQuery;
+
+ document.onkeydown = function(evt) {
+   evt = evt || window.event;
+   var isEscape = false;
+   if ('key' in evt) {
+     isEscape = evt.key == 'Escape';
+   } else {
+     isEscape = evt.keyCode == 27;
+   }
+
+   if (isEscape) {
+     close();
+   }
+ };
+
+ function close() {
+        window.parent.postMessage('ml-accounts-1269954-s6m2g1j0a5-webforms-1040892-y8r3k6-hide', '*');
+ };
+
+ function sendHeightToParent(selector) {
+   setTimeout(function(){
+    var formHeight = $(selector).outerHeight();
+    window.parent.postMessage('ml-accounts-1269954-s6m2g1j0a5-webforms-1040892-y8r3k6-setHeight-' + formHeight + 'px', '*');
+   },50);
+ }
+
+ if ($('.mailerlite-popup').length) {
+   setTimeout(function() {
+    sendHeightToParent('.mailerlite-popup');
+   },200);
+   $(window).resize(sendHeightToParent.bind(null, '.mailerlite-popup'));
+ }
+
+
+ if ($('.mailerlite-slidebox').length) {
+   setTimeout(function() {
+    sendHeightToParent('.mailerlite-slidebox');
+   },200);
+   $(window).resize(sendHeightToParent.bind(null, '.mailerlite-slidebox'));
+ }
+
+ if ($('.mailerlite-form-bar').length) {
+   setTimeout(function() {
+     sendHeightToParent('.mailerlite-form-bar');
+   },200);
+   $(window).resize(sendHeightToParent.bind(null, '.mailerlite-form-bar'));
+ }
+
+
+ if ($('.mailerlite-fullscreen').length) {
+   setTimeout(function() {
+     sendHeightToParent('.mailerlite-fullscreen');
+   },200);
+   $(window).resize(sendHeightToParent.bind(null, '.mailerlite-fullscreen'));
+ }
+
+ function ml_webform_success_1040892 () {
+   $('.row-form').hide();
+   $('.row-success').show();
+   $(window).scrollTop(0);
+
+
+   if ($('.row-success').find('.success-template').length && $('.success-template').html()) {
+     $('.row-success').replaceWith($('.success-template').html());
+   }
+ }
+
+
+        </script>
+
+        <img src="https://track.mailerlite.com/webforms/o/1040892/y8r3k6" width="1" height="1">
+
+    </div>
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.35);
+            overflow: scroll;
+        }
+
+        .webform-container {
+            padding: 30px;
+            margin: 0;
+        }
+
+        .mailerlite-container {
+            width: 100% !important;
+            box-sizing: border-box;
+            margin: 0 auto;
+            position: static;
+            display: table;
+            height: 100%;
+        }
+
+        .mailerlite-vertical-align-center {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .ml-subscribe-form .ml-vertical-align-center {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .mailerlite-webform {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            padding: 0px;
+            max-width: 480px;
+            text-align: left;
+        }
+
+        .close-popup {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            z-index: 2;
+        }
+
+            .close-popup:hover {
+                text-decoration: none;
+            }
+    </style>
+    
+    @*<script>
+			function showPopup(ele) {
+				var container = ele.closest('.container');
+				var popup = container.find('.popup');
+				popup.show('fadeIn');
+			}
+			function hidePopup(ele) {
+				var popup = ele.closest('.popup');
+				popup.hide();
+			}
+			$(document).on('click', '.popup', function() {
+				hidePopup($(this));
+			});
+			$(document).on('click', '.mailerlite-webform', function(e) {
+				e.stopPropagation();
+			})
+    </script>*@
+
+    <script src="https://static.mailerlite.com/js/w/webforms.min.js?vaa4d608450783acdc64d5338ff94f6d5" type="text/javascript"></script>
+    <script async="async" src="https://code.jquery.com/jquery-2.2.4.min.js" crossorigin="anonymous" type="text/javascript"></script>
+    <script async="async" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous" type="text/javascript"></script>
+
+</body>
+</html>
+

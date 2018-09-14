@@ -220,6 +220,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Icon\Webp.net-resizeimage.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -299,6 +300,9 @@
     <Content Include="Views\Customers\PayForPickups.cshtml" />
     <Content Include="Views\Customers\PayForPickupsConfirmed.cshtml" />
     <Content Include="Views\Employees\ViewPickupsChosenByWeekday.cshtml" />
+    <Content Include="Views\Employees\SeeCustomersOnMap.cshtml" />
+    <Content Include="Views\Employees\ViewCustomersOnMap.cshtml" />
+    <Content Include="Views\Home\SorryToSeeYouGo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
