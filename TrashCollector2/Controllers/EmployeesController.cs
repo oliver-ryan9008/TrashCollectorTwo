@@ -144,7 +144,7 @@ namespace TrashCollector2.Controllers
             }
             else
             {
-                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold == false || c.IsOnHold == null) && c.IsConfirmed != true).ToList();
+                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold != true) && (c.IsConfirmed != true) && c.ZipCode == currentEmployee.ZipCode).ToList();
                 if (!checkTodayPickups.Any())
                 {
                     return View();
@@ -218,16 +218,19 @@ namespace TrashCollector2.Controllers
 
         public ActionResult SeeCustomersOnMap(string id)
         {
-            if (id != null)
-            {
-                var customer = (from c in db.Customers where c.UserId == id select c).ToList();
-                return View(customer);
-            }
             var userId = User.Identity.GetUserId();
             var currentEmployee = (from e in db.Employees where e.UserId == userId select e).FirstOrDefault();
+            var employeeZip = currentEmployee.ZipCode;
+            ViewBag.zip = employeeZip;
             var todayDayOfWeek = DateTime.Now.DayOfWeek.ToString();
             var todayDate = DateTime.Now.Date;
             var customersMatchingZip = (from c in db.Customers where c.ZipCode == currentEmployee.ZipCode select c).ToList();
+            if (id != null)
+            {
+                var customer = (from c in db.Customers where c.UserId == id select c).ToList();
+
+                return View(customer);
+            }
 
             if (!customersMatchingZip.Any())
             {
@@ -235,7 +238,7 @@ namespace TrashCollector2.Controllers
             }
             else
             {
-                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold != true) && c.IsConfirmed != true).ToList();
+                var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold != true) && (c.IsConfirmed != true) && c.ZipCode == currentEmployee.ZipCode).ToList();
                 if (!checkTodayPickups.Any())
                 {
                     return View();

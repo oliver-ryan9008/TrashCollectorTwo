@@ -1,26 +1,27 @@
 ﻿@model IEnumerable<TrashCollector2.Models.Customer>
 
 @{
-    ViewBag.Title = "SeeCustomersOnMap";
+    ViewBag.Title = "Pickup Map";
 }
 @{ List<string> addresses = new List<string>(); }
 
 @foreach (var item in Model)
 {
-    
+    if (item.ZipCode == ViewBag.zip)
+    {
         string address = item.StreetAddress + ", " + item.ZipCode.ToString();
         addresses.Add(address);
-    
+    }
 }
 
-<h2>SeeCustomersOnMap</h2>
+<h2></h2>
 
 <section class="scripts">
     <script>
         function initMap() {
             var bounds = new google.maps.LatLngBounds;
-            var markersArray = [];
-            var origin1 = "333 N Plankinton Ave, Milwaukee, WI";
+            var markersArray = [];            
+            var origin1 = "@(ViewBag.zip)";
             var homeIcon = "http://maps.google.com/mapfiles/ms/icons/homegardenbusiness.png";
             var destIcon = "http://maps.google.com/mapfiles/ms/icons/flag.png";
 
@@ -30,13 +31,11 @@
         {
             <text> destinationArray.push("@a"); </text>
         }
-            //<img src="~/Content/Icon/Webp.net-resizeimage.png" />
-            //var destinationIcon = 'https://chart.googleapis.com/chart?' +
-            //    'chst=d_map_pin_letter&chld=D|FF0000|000000';
+
             var destinationIcon = destIcon;
             var originIcon = homeIcon;
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 55.53, lng: 9.4 },
+                center: { origin1 },
                 zoom: 10
             });
             var geocoder = new google.maps.Geocoder;
@@ -74,6 +73,7 @@
                     };
 
                     for (var i = 0; i < originList.length; i++) {
+                        debugger;
                         var results = response.rows[i].elements;
                         geocoder.geocode({ 'address': originList[i] },
                             showGeocodedAddressOnMap(false));
@@ -82,6 +82,7 @@
                                 showGeocodedAddressOnMap(true));
                         }
                     }
+
                 }
             });
         }
@@ -99,7 +100,7 @@
 
     </script>
 
-    <div id="map" style="width : 700px; height : 400px; margin : 0px; padding : 0px; float : left; margin-right:20px;">
+    <div id="map" style="width : 1280px; height : 720px; display: block; margin-left: auto; margin-right: auto;">
 
     </div>
     </section>

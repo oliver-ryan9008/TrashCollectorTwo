@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<TrashCollector2.Models.Customer>
 
 @{
-    ViewBag.Title = "EmployeeTodayPickups";
+    ViewBag.Title = "Today's Pickups";
 }
 
-<h2>EmployeeTodayPickups</h2>
-
-@{List<string> pins = new List<string>(); }
+<h2>Your pickups for today:</h2>
 
 <table class="table">
     <tr>
@@ -34,7 +32,7 @@
     {
         foreach (var item in Model)
         {
-            pins.Add(item.UserId);
+            
             @Html.HiddenFor(modelItem => item.UserId)
             <tr>
                 <td>
