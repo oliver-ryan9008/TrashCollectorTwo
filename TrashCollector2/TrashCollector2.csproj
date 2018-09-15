@@ -220,6 +220,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\HomeStyles\assets\css\font-awesome.min.css" />
+    <Content Include="Content\HomeStyles\assets\css\main.css" />
+    <Content Include="Content\HomeStyles\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\HomeStyles\assets\js\main.js" />
+    <Content Include="Content\HomeStyles\images\bg01.jpg" />
+    <Content Include="Content\HomeStyles\images\bg02.jpg" />
+    <Content Include="Content\HomeStyles\images\bg03.jpg" />
     <Content Include="Content\Icon\Webp.net-resizeimage.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -230,6 +237,30 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\HomeStyles\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\HomeStyles\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\HomeStyles\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\HomeStyles\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\HomeStyles\assets\fonts\FontAwesome.otf" />
+    <Content Include="Content\HomeStyles\assets\sass\base\_bg.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\base\_page.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\base\_reset.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\base\_typography.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\components\_button.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\components\_form.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\components\_icon.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\components\_icons.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\components\_list.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\components\_section.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\layout\_footer.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\layout\_header.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\layout\_signup-form.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\libs\_breakpoints.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\libs\_functions.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\libs\_mixins.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\libs\_vars.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\libs\_vendor.scss" />
+    <Content Include="Content\HomeStyles\assets\sass\main.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -303,6 +334,7 @@
     <Content Include="Views\Employees\SeeCustomersOnMap.cshtml" />
     <Content Include="Views\Employees\ViewCustomersOnMap.cshtml" />
     <Content Include="Views\Home\SorryToSeeYouGo.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -212,7 +212,7 @@ namespace TrashCollector2.Controllers
                     }
                 }
             }
-
+            ViewBag.dayToSee = day;
             return View(specificDayCustomers);
         }
 

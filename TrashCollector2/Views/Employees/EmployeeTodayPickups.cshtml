@@ -6,60 +6,63 @@
 
 <h2>Your pickups for today:</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StreetAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WeeklyPickupDay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OneTimePickupDate)
-        </th>
-    </tr>
+<table class="table table-hover">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.StreetAddress)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.WeeklyPickupDay)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.OneTimePickupDate)
+            </th>
+            <th scope="col">
 
-    @if (Model != null)
-    {
-        foreach (var item in Model)
+            </th>
+        </tr>
+        @if (Model != null)
         {
-            
-            @Html.HiddenFor(modelItem => item.UserId)
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StreetAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ZipCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OneTimePickupDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new { id = item.UserId }, FormMethod.Post) | @Html.ActionLink("Map This", "SeeCustomersOnMap", new { id = item.UserId })
-                </td>
-            </tr>
+            foreach (var item in Model)
+            {
+
+                @Html.HiddenFor(modelItem => item.UserId)
+                <tr class="table-success">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StreetAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OneTimePickupDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new { id = item.UserId }, FormMethod.Post) | @Html.ActionLink("Map This", "SeeCustomersOnMap", new { id = item.UserId })
+                    </td>
+                </tr>
+            }
         }
-    }
 </table>
+
 <div>
     @Html.ActionLink("View All Pickups On Map", "SeeCustomersOnMap")
 </div>

@@ -28,7 +28,13 @@ namespace TrashCollector2.Controllers
             return View();
             
         }
+        [HttpPost, ActionName("Index")]
+        public ActionResult VisitorHome()
+        {
+            return RedirectToAction("Register", "Account");
+        }
 
+        
         public ActionResult SorryToSeeYouGo()
         {            
             return View();
@@ -45,6 +51,10 @@ namespace TrashCollector2.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Test()
+        {
             return View();
         }
     }
