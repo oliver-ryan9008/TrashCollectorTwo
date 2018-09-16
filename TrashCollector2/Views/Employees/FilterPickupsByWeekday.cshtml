@@ -10,28 +10,28 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4></h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
-        @Html.DropDownList("chosenDay", new List<SelectListItem>  
-        {  
-            new SelectListItem{ Text="Monday", Value = "Monday" },  
-            new SelectListItem{ Text="Tuesday", Value = "Tuesday" },  
-            new SelectListItem{ Text="Wednesday", Value = "Wednesday" },  
-            new SelectListItem{ Text="Thursday", Value = "Thursday" },  
-            new SelectListItem{ Text="Friday", Value = "Friday" },  
-            new SelectListItem{ Text="Saturday", Value = "Saturday" },
-            new SelectListItem{ Text="Sunday", Value = "Sunday" }
-        }, "Choose...") 
-        
-        <br /><br />
+<div class="form-horizontal">
+    <h4></h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="View" class="btn btn-default" />
-            </div>
+    @Html.DropDownList("chosenDay", new List<SelectListItem>
+    {
+        new SelectListItem{ Text="Monday", Value = "Monday" },
+        new SelectListItem{ Text="Tuesday", Value = "Tuesday" },
+        new SelectListItem{ Text="Wednesday", Value = "Wednesday" },
+        new SelectListItem{ Text="Thursday", Value = "Thursday" },
+        new SelectListItem{ Text="Friday", Value = "Friday" },
+        new SelectListItem{ Text="Saturday", Value = "Saturday" },
+        new SelectListItem{ Text="Sunday", Value = "Sunday" }
+    }, "Choose...")
+
+    <br /><br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="View" class="btn btn-success" />
         </div>
     </div>
+</div>
 }

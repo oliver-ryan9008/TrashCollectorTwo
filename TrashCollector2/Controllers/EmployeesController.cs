@@ -234,14 +234,14 @@ namespace TrashCollector2.Controllers
 
             if (!customersMatchingZip.Any())
             {
-                return View();
+                return RedirectToAction("DisplayError");
             }
             else
             {
                 var checkTodayPickups = db.Customers.Where(c => (c.OneTimePickupDate == todayDate || c.WeeklyPickupDay == todayDayOfWeek) && (c.IsOnHold != true) && (c.IsConfirmed != true) && c.ZipCode == currentEmployee.ZipCode).ToList();
                 if (!checkTodayPickups.Any())
                 {
-                    return View();
+                    return RedirectToAction("DisplayError");
                 }
                 else
                 {

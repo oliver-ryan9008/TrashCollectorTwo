@@ -7,7 +7,7 @@
 <h2>Your pickups for today:</h2>
 
 <table class="table table-hover">
-        <tr>
+        <tr class="table-primary">
             <th scope="col">
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
@@ -36,7 +36,7 @@
             {
 
                 @Html.HiddenFor(modelItem => item.UserId)
-                <tr class="table-success">
+                <tr class="table-info">
                     <td>
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
@@ -56,7 +56,7 @@
                         @Html.DisplayFor(modelItem => item.OneTimePickupDate)
                     </td>
                     <td>
-                        @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new { id = item.UserId }, FormMethod.Post) | @Html.ActionLink("Map This", "SeeCustomersOnMap", new { id = item.UserId })
+                        @Html.ActionLink("Confirm Pickup", "ConfirmPickup", "Employees", new { id = item.UserId }, new { @class = "btn btn-success" }) @Html.ActionLink("Map This", "SeeCustomersOnMap", new { id = item.UserId }, new { @class = "btn btn-success"})
                     </td>
                 </tr>
             }
@@ -64,6 +64,6 @@
 </table>
 
 <div>
-    @Html.ActionLink("View All Pickups On Map", "SeeCustomersOnMap")
+    <input type="button" class="btn btn-success" value="View All Pickups On Map" onclick="location.href='@Url.Action("SeeCustomersOnMap", "Employees")'" />
 </div>
 <br /><br /><br /><br /><br />

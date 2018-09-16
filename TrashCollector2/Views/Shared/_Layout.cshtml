@@ -6,12 +6,31 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <style type="text/css">
+        body {
+            background: #626262 !important;
+        }
+    </style>
 </head>
 <body>
     @if (User.IsInRole("Customer"))
     {
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-default"></nav>
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-primary d-flex">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+                <ul class="navbar-nav mr-auto">
+                    @*<li><a class="nav-link" href="~/Account/Register"> Register </a></li>*@
+                    <li><a class="nav-link" href="~/Home/Index"> Home </a></li>
+                    <li><a class="nav-link" href="~/Customers/ChooseNewOneTimePickup"> Schedule An Extra Pickup </a></li>
+                    <li><a class="nav-link" href="~/Customers/MoneyOwed"> View Balance Due </a></li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+            </div>
+        </nav>
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,27 +41,43 @@
                     <a href="@Url.Action("Index", "Home")">
                         <img src='@Url.Content("https://i.imgur.com/FIF3e1r.png")' height="50" width="50" />
                     </a>
-                    @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
 
                         @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-                        @*<li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                        <li>@Html.ActionLink("My Info", "CustomerHome", "Customers")</li>
-                        <li>@Html.ActionLink("View Balance Due", "MoneyOwed")</li>
+        @*<li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("My Info", "CustomerHome", "Customers")</li>
+                            <li>@Html.ActionLink("View Balance Due", "MoneyOwed")</li>
 
-                    </ul>
-                    @Html.Partial("_LoginPartial")
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
     }
     else if (User.IsInRole("Employee"))
     {
+        <nav class="navbar navbar-default"></nav>
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-primary d-flex">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+                <div class="navbar-collapse collapse container" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        @*<li><a class="nav-link" href="~/Account/Register"> Register </a></li>*@
+                        <li><a class="nav-link" href="~/Home/Index"> Home </a></li>
+                        <li><a class="nav-link" href="~/Employees/FilterPickupsByWeekday"> View Daily Schedules </a></li>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+
+                </div>
+            </div>
+        </nav>
+
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,40 +95,47 @@
                         <li>@Html.ActionLink("View Daily Schedules", "FilterPickupsByWeekday", "Employees")</li>
                         @*<li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                        @*<li>@Html.ActionLink("Employees", "Index", "Employees")</li>*@
+        @*<li>@Html.ActionLink("Employees", "Index", "Employees")</li>
 
-                    </ul>
-                    @Html.Partial("_LoginPartial")
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
     }
     else
     {
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-primary d-flex">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="@Url.Action("Index", "Home")">
-                        <img src='@Url.Content("https://i.imgur.com/FIF3e1r.png")' height="50" width="50" />
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+                <div class="navbar-collapse collapse container" id="navbarSupportedContent">
+
+                    <ul class="nav navbar-nav mr-auto"></ul>
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>
-        </div>
+        </nav>
+        @*<div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src='@Url.Content("https://i.imgur.com/FIF3e1r.png")' height="50" width="50" />
+                        </a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>*@
     }
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

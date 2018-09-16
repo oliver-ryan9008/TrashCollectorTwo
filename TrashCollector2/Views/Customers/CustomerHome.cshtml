@@ -30,11 +30,11 @@
     <dd>
         @Html.DisplayFor(model => model.ZipCode)
     </dd>
-    
+
     <dt>
         @Html.DisplayNameFor(model => model.WeeklyPickupDay):
     </dt>
-    
+
     <dd>
         @Html.DisplayFor(model => model.WeeklyPickupDay)
     </dd>
@@ -55,14 +55,18 @@
         <dd>
             @Html.DisplayTextFor(model => model.IsOnHold)
         </dd>
+        @Html.ActionLink("Remove Hold", "TakePickupsOffHold", new { id = Model.UserId }, new { @class = "btn btn-warning" })
     }
 </dl>
+<hr />
 <div>
-    | @Html.ActionLink("Schedule One-Time Pickup", "ChooseNewOneTimePickup", new { id = Model.UserId }) |
-    @Html.ActionLink("View Balance Due", "MoneyOwed", new { id = Model.UserId }) |
-    @Html.ActionLink("Pay Balance", "PayForPickups", new { id = Model.UserId }) |
-    @Html.ActionLink("Edit My Info", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Delete My Account", "Delete", new { id = Model.UserId }) |
+    <input type="button" class="btn btn-success" value="Schedule An Extra Pickup" onclick="location.href='@Url.Action("ChooseNewOneTimePickup", "Customers")'" />&nbsp;
+    <input type="button" class="btn btn-success" value="View Balance Due" onclick="location.href='@Url.Action("MoneyOwed", "Customers")'" />&nbsp;
+    <input type="button" class="btn btn-success" value="Pay Balance" onclick="location.href='@Url.Action("PayForPickups", "Customers")'" />&nbsp;
+    <input type="button" class="btn btn-success" value="Put Pickups On Hold" onclick="location.href='@Url.Action("DelayPickupsForTime", "Customers")'" />&nbsp;
+    
+    @Html.ActionLink("Edit My Info", "Edit", new { id = Model.UserId }, new { @class = "btn btn-success" })&nbsp;
+    @Html.ActionLink("Delete My Account", "Delete", new { id = Model.UserId }, new { @class = "btn btn-danger" })&nbsp;
 </div>
 
 @section Scripts {

@@ -182,6 +182,19 @@ namespace TrashCollector2.Controllers
             return RedirectToAction("CustomerHome");
         }
 
+        public ActionResult TakePickupsOffHold()
+        {
+            var userId = User.Identity.GetUserId();
+            Customer currentCustomer = (from c in db.Customers where userId == c.UserId select c).First();
+            currentCustomer.IsOnHold = false;
+            currentCustomer.StartOfDelayedPickup = null;
+            currentCustomer.EndOfDelayedPickup = null;
+
+            db.Entry(currentCustomer).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("CustomerHome");
+        }
+
         public ActionResult ChooseNewOneTimePickup()
         {
             return View();

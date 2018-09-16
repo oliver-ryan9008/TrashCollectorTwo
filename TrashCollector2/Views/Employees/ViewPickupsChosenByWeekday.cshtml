@@ -6,24 +6,24 @@
 
 <h2>Here are your @(ViewBag.dayToSee) pickups:</h2>
 
-<table class="table">
-    <tr>
-        <th>
+<table class="table table-hover">
+    <tr class="table-primary">
+        <th scope="col">
             @Html.DisplayNameFor(model => model.UserName)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.FullName)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.StreetAddress)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.ZipCode)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.WeeklyPickupDay)
         </th>
-        <th>
+        <th scope="col">
             @Html.DisplayNameFor(model => model.OneTimePickupDate)
         </th>
     </tr>
@@ -33,26 +33,26 @@
         foreach (var item in Model)
         {
             @Html.HiddenFor(modelItem => item.UserId)
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StreetAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ZipCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OneTimePickupDate)
-                </td>
-            </tr>
+                <tr class="table-info">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StreetAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WeeklyPickupDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OneTimePickupDate)
+                    </td>
+                </tr>
         }
     }
 </table>

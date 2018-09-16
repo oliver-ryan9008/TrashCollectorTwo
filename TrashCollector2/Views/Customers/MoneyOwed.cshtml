@@ -22,5 +22,6 @@
 <br /><br /><br /><br />
 <hr />
 <p>
-    @Html.ActionLink("My Info", "CustomerHome")
+    <input type="button" class="btn btn-success" value="Home" onclick="location.href='@Url.Action("CustomerHome", "Customers")'" />
+    <input type="button" class="btn btn-success" value="Pay Balance" onclick="location.href='@Url.Action("PayForPickups", "Customers")'" />
 </p>
