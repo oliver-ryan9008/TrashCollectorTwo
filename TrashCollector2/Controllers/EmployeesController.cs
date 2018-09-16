@@ -204,8 +204,11 @@ namespace TrashCollector2.Controllers
                 foreach (var cust in customersMatchingZip)
                 {
                     var pickupDateString = cust.OneTimePickupDate.ToString();
-                    var specificDatePickup = DateTime.Parse(pickupDateString).DayOfWeek.ToString();
-
+                    string specificDatePickup = null;
+                    if (pickupDateString != "")
+                    {
+                        specificDatePickup = DateTime.Parse(pickupDateString).DayOfWeek.ToString();
+                    }
                     if ((cust.WeeklyPickupDay == day || specificDatePickup == day) && !cust.IsOnHold && cust.IsConfirmed != true)
                     {
                         specificDayCustomers.Add(cust);
